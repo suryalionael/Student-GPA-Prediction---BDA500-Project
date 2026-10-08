@@ -8,10 +8,9 @@ underperforming in mathematics and target early intervention.
 
 | Member | Sections owned |
 |---|---|
-| **Lionael Surya** | 0 Setup, 1 Problem Framing, 2 Load & Clean, 3 EDA, 5 Preprocessing pipeline, 6.1 Config counts, 6.2 Linear Regression |
-| **Margil Parekh** | 6.2 Ridge Regression (alpha = 1.0) |
-| **Chehoon Shin** | 6.2 Polynomial Regression (degree 3) |
-| _TBD_ | 6.3 Model selection, 6.4 Final test evaluation, 6.5 Residual analysis, report writing |
+| **Lionael Surya** | 0 Setup through 6.1 Config counts |
+| **Chaehoon Shin** | 6.2 Models, 6.3 Model selection, 6.4 Final test evaluation |
+| **Margil Parekh** | 6.5 Residual analysis |
 
 Every section header and code cell in the notebook carries a `# Contributor:` comment.
 
