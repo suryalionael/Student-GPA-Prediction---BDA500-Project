@@ -8,9 +8,10 @@ underperforming in mathematics and target early intervention.
 
 | Member | Sections owned |
 |---|---|
-| **Lionael Surya** | 0 Setup, 1 Problem Framing, 2 Load & Clean, 3 EDA (distributions, correlations, cluster structure) |
-| **Margil Parekh** | 5 Preprocessing pipeline, 6.1 Config counts, 6.2 Ridge results, comparison table + RMSE bar chart |
-| **Chehoon Shin** | 6.3 Model selection, 6.4 Final test evaluation, 6.5 Residual analysis, report writing |
+| **Lionael Surya** | 0 Setup, 1 Problem Framing, 2 Load & Clean, 3 EDA, 5 Preprocessing pipeline, 6.1 Config counts, 6.2 Linear Regression |
+| **Margil Parekh** | 6.2 Ridge Regression (alpha = 1.0) |
+| **Chehoon Shin** | 6.2 Polynomial Regression (degree 3) |
+| _TBD_ | 6.3 Model selection, 6.4 Final test evaluation, 6.5 Residual analysis, report writing |
 
 Every section header and code cell in the notebook carries a `# Contributor:` comment.
 
@@ -46,18 +47,19 @@ No missing values and no duplicate rows. See Section 2.1–2.2 of the notebook.
 - **Split:** train/test at 10%, 25%, and 30% test size
 - **Random state:** 0 and 42
 - **Cross-validation:** 5-fold on the training set only
-- **Preprocessing:** `ColumnTransformer` — `SimpleImputer` for numerics, `OneHotEncoder` for categoricals,
-  `StandardScaler` for numerics. Fit on train only, transform test without refitting, to prevent leakage.
-- **Models:** Linear Regression, Ridge (`alpha=1.0`), Polynomial Regression (`degree=3`) via `Pipeline`
-- **Metrics:** MAE, RMSE, R² — mean and standard deviation across the 5 CV folds
+- **Preprocessing:** `ColumnTransformer` with median `SimpleImputer` + `StandardScaler` for numerics and
+  most-frequent `SimpleImputer` + `OneHotEncoder` for categoricals (19 columns). Refit on each training fold, so test rows never leak in.
+- **Models:** Linear Regression, Ridge (`alpha=1.0`), Polynomial Regression (`degree=3` on all preprocessed columns, fit with ordinary least squares), built by `regression_pipeline()` in Section 6.2
+- **Metrics:** MAE, RMSE, R², mean and standard deviation across the 5 CV folds
 - **Configurations:** 3 test sizes × 2 random states = 6 per model, 18 total
 
 Random seed pinned to 42 at the top of Section 0.
 
 ## Results
 
-See `BDA500_Group##_Model_Comparison.xlsx`, worksheet `Regression_Results`, and Section 6.3 of the
-notebook for the comparison table and RMSE bar chart.
+See `outputs/BDA500_Project1_Results.xlsx`, worksheet `Regression_Results`, and Section 6.3 of the
+notebook for the comparison table and RMSE bar chart. Ridge Regression (10% test, random state 0) wins
+with CV RMSE 5.35 and test RMSE 5.82.
 
 ## Project layout
 
@@ -71,8 +73,9 @@ notebook for the comparison table and RMSE bar chart.
 ├── BDA500_ML_Project1_Questions.ipynb   # main deliverable notebook
 ├── notebooks/
 │   └── 01_eda.ipynb
+├── outputs/
+│   └── BDA500_Project1_Results.xlsx
 ├── results/
-│   ├── BDA500_Group##_Model_Comparison.xlsx
 │   └── figures/
 └── BDA500_Group##_Report.pdf
 ```
@@ -84,8 +87,8 @@ pip install -r requirements.txt
 jupyter nbconvert --to notebook --execute BDA500_ML_Project1_Questions.ipynb --output executed.ipynb
 ```
 
-Notebook resolves `StudentsPerformance.csv` and `results/figures/` relative to the repo root, so run
-it from this directory.
+All the code lives in the notebook. It reads `StudentsPerformance.csv` and writes `outputs/` relative to
+the current folder, so run it from this directory. Plots show inline only.
 
 ## Due dates
 
