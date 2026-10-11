@@ -1,16 +1,15 @@
-# BDA500 Project 1 — Predicting Student Math Scores
+# BDA500 Project 1 Regression: Predicting Student Math Scores
 
-Group regression project for **BDA500**. Predict a student's **math score** (continuous, 0–100) from their
-reading and writing scores plus five sociodemographic factors, so schools can flag students at risk of
-underperforming in mathematics and target early intervention.
+**Group:** 3
+**Team members:** Lionael Surya, Chaehoon Shin, Margil Parekh
+**Dataset:** Students Performance in Exams (Kaggle, spscientist)
+**Due:** October 14, 2026, 11:59 PM ET
 
-## Team
-
-| Member | Sections owned |
+| Member | Sections |
 |---|---|
-| **Lionael Surya** | 0 Setup through 6.1 Config counts |
-| **Chaehoon Shin** | 6.2 Models, 6.3 Model selection, 6.4 Final test evaluation |
-| **Margil Parekh** | 6.5 Residual analysis |
+| Lionael Surya | 0 Setup, 1 Problem Framing, 2.1 Load and Inspect, 2.2 Column Roles and Cleaning, 6.1 Configuration Counts, 6.2 Cross-Validated Regression Results |
+| Chaehoon Shin | 3.1 Histograms and Boxplots, 3.2 Correlations, 3.3 Possible Cluster Structure, 6.3 Regression Comparison and Selection |
+| Margil Parekh | 5 Preprocessing, 6.4 Final Untouched Test Evaluation, 6.5 Actual-vs-Predicted, Residuals and Large Errors |
 
 Every section header and code cell in the notebook carries a `# Contributor:` comment.
 
